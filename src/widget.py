@@ -12,10 +12,12 @@ def mask_account_card(name: str) -> str:
         elif el.isdigit():
             digit_result += el
             digit_count += 1
-    if digit_count > 16:
+    if digit_count == 20:
         return f"{text_result} {get_mask_account(digit_result)}"
-    else:
+    elif digit_count == 16:
         return f"{text_result} {get_mask_card_number(digit_result)}"
+    return "Вы ввели неккоректную информацию"
+print(mask_account_card("Visa Platinum 1234567890123450"))
 
 
 def get_date(str_data: str) -> str:
