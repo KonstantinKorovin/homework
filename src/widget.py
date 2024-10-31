@@ -17,6 +17,8 @@ def mask_account_card(name: str) -> str:
     elif digit_count == 16:
         return f"{text_result} {get_mask_card_number(digit_result)}"
     return "Вы ввели неккоректную информацию"
+
+
 print(mask_account_card("Visa Platinum 1234567890123450"))
 
 
