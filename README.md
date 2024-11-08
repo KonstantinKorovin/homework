@@ -16,11 +16,11 @@
 ## Тестирование проекта
 с помощью pytest
 ## Инструкция по установке
-1.Чтобы скачать репозиторий:
-git clone https://github.com/KonstantinKorovin/homework.git
-2.Установить не обходимые зависимости
-pip install -r pyproject.toml
-Немного подождать
+* Чтобы скачать репозиторий:
+git clone 
+https://github.com/KonstantinKorovin/homework.git
+* Установить необходимые зависимости
+pip install -r requirments.txt
 ## Команда проекта:
 * Коровин Константин
 ## Контакт для связи с командой разработки:
