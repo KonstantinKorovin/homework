@@ -5,3 +5,5 @@ my_function error: unsupported operand type(s) for /: 'int' and 'str'. Inputs: (
 my_function ok
 my_function ok
 my_function error: division by zero. Inputs: (1, 0), {}
+my_function ok
+my_function error: unsupported operand type(s) for +: 'int' and 'str'. Inputs: (1, '0'), {}

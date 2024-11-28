@@ -8,19 +8,23 @@ def log(filename: Optional[str] = None) -> Callable:
     def wrapper(func: Callable) -> Callable:
         @wraps(func)
         def inner(*args: Any, **kwargs: Any) -> Any:
+
             try:
-                func(*args, **kwargs)
+                result = func(*args, **kwargs)
                 if filename is not None:
                     with open(filename, "a", encoding="utf-8") as file:
                         file.write(f"{func.__name__} ok\n")
                 else:
-                    return f"{func.__name__} ok"
+                    print(f"{func.__name__} ok")
+                return result
+
             except Exception as e:
+                error_message = f"{func.__name__} error: {e}. Inputs: {args}, {kwargs}"
                 if filename is not None:
                     with open(filename, "a", encoding="utf-8") as file:
-                        file.write(f"{func.__name__} error: {e}. Inputs: {args}, {kwargs}\n")
-                else:
-                    return f"{func.__name__} error: {e}. Inputs: {args}, {kwargs}"
+                        file.write(error_message + "\n")
+
+                return error_message
 
         return inner
 
@@ -29,8 +33,8 @@ def log(filename: Optional[str] = None) -> Callable:
 
 @log()
 def my_function(x: Any, y: Any) -> Any:
-    ''' Функция исполняемая декоратором "log" '''
+    """Функция исполняемая декоратором "log" """
     return x + y
 
 
-print(my_function(1, ""))
+print(my_function(1, 0))
