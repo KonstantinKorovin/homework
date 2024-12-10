@@ -8,7 +8,7 @@ load_dotenv()
 
 
 def get_transaction_amount(transaction: dict) -> Any:
-    ''' Функция принимает на вход транзакцию и возвращает сумму транзакции (amount) в рублях, тип данных — float '''
+    """Функция принимает на вход транзакцию и возвращает сумму транзакции (amount) в рублях, тип данных — float"""
     if transaction["currency"] == "RUB":
         return transaction["amount"]
     elif transaction["currency"] in ["USD", "EUR"]:
@@ -23,6 +23,6 @@ def get_transaction_amount(transaction: dict) -> Any:
             exchange_rate = data["rates"]["RUB"]
             return float(transaction["amount"]) * float(exchange_rate)
         else:
-            return None
+            return []
     else:
-        return None
+        return []
