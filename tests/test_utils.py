@@ -1,21 +1,22 @@
 import json
 import os
 import unittest
-from json import JSONDecodeError
 from unittest.mock import mock_open, patch
 
 import pytest
-from unittest.mock import Mock
-from src.utils import load_transactions, file_path
+
+from src.utils import load_transactions
 
 
 @pytest.fixture
 def test_load_transactions():
-    return load_transactions(file_path)
+    return load_transactions("/Users/krynik/PycharmProjects/bank_vidget/data/operations.json")
 
 
 def test_load_transactions1(test_load_transactions):
-    assert load_transactions(file_path) == test_load_transactions
+    assert (
+        load_transactions("/Users/krynik/PycharmProjects/bank_vidget/data/operations.json") == test_load_transactions
+    )
 
 
 class TestLoadTransactions(unittest.TestCase):
@@ -50,6 +51,3 @@ class TestLoadTransactions(unittest.TestCase):
         with patch("builtins.open", mock_open(read_data="invalid json")):
             transactions = load_transactions(self.file_path)
         self.assertEqual(transactions, [])
-
-
-

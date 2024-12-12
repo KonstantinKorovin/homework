@@ -1,9 +1,8 @@
 import json
-import os
 from json import JSONDecodeError
 
 
-def load_transactions(list_transactions: str) -> list:
+def load_transactions(file_path: str) -> list:
     """Функция принимает на вход путь до JSON-файла и возвращает список словарей с данными о финансовых транзакциях"""
     try:
         with open(file_path, "r", encoding="utf-8") as f:
@@ -17,7 +16,4 @@ def load_transactions(list_transactions: str) -> list:
         return []
 
 
-base_dir = os.path.abspath(os.path.dirname(__file__))
-data_dir = os.path.join(base_dir, "..", "data")
-file_path = os.path.join(data_dir, os.path.basename("operations.json"))
-print(load_transactions(file_path))
+print(load_transactions("/Users/krynik/PycharmProjects/bank_vidget/data/operations.json"))
