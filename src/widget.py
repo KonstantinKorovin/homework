@@ -19,9 +19,8 @@ def mask_account_card(name: str) -> str:
     return "Вы ввели неккоректную информацию"
 
 
-print(mask_account_card("Visa Platinum 1234567890123450"))
-
-
 def get_date(str_data: str) -> str:
     """Функция принимает строку и возвращает значение в формате ДД.ММ.ГГГГ"""
+    if len(str_data) != 26:
+        return "Введите сообщение в корректном формате"
     return f"{str_data[8:10]}.{str_data[5:7]}.{str_data[:4]}"
