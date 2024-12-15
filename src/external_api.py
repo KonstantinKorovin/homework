@@ -10,9 +10,9 @@ load_dotenv()
 
 def get_transaction_amount(transaction: dict) -> Any:
     """Функция принимает на вход транзакцию и возвращает сумму транзакции (amount) в рублях, тип данных — float"""
-    if transaction["operationAmount"]["currency"]["code"] == "RUB":
+    if transaction["operationAmount"]["currency"]["code"] in "RUB":
         return transaction["operationAmount"]["amount"]
-    elif transaction["operationAmount"]["currency"]["code"] == ["USD", "EUR"]:
+    elif transaction["operationAmount"]["currency"]["code"] in ["USD", "EUR"]:
         api_key = os.getenv("API-KEY")
         url = (
             f"https://api.apilayer.com/exchangerates_data/convert?to=RUB&"

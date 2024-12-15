@@ -1,0 +1,10 @@
+my_function ok
+my_function ok
+my_function ok
+my_function error: unsupported operand type(s) for +: 'int' and 'str'. Inputs: (1, ''), {}
+my_function error: unsupported operand type(s) for +: 'int' and 'list'. Inputs: (1, [1]), {}
+my_function ok
+my_function ok
+my_function ok
+my_function error: unsupported operand type(s) for +: 'int' and 'str'. Inputs: (1, ''), {}
+my_function error: unsupported operand type(s) for +: 'int' and 'list'. Inputs: (1, [1]), {}
