@@ -4,6 +4,7 @@ from typing import Any
 
 import requests
 from dotenv import load_dotenv
+import json
 
 load_dotenv()
 api_key = os.getenv("API_KEY")
@@ -27,9 +28,25 @@ def get_transaction_amount(transaction: dict) -> Any:
 
         response = requests.request("GET", url, headers=headers)
         if response.status_code == 200:
-            result = response.text
-            return result
+            result_json = response.text
+            result = json.loads(result_json)
+            return f"{float(result['result'])} RUB"
     elif transaction["operationAmount"]["currency"]["code"] in "RUB":
         return f"{float(transaction['operationAmount']['amount'])} RUB"
     else:
         return []
+
+
+print(
+    get_transaction_amount(
+        {
+            "id": 41428829,
+            "state": "EXECUTED",
+            "date": "2019-07-03T18:35:29.512364",
+            "operationAmount": {"amount": "8221.37", "currency": {"name": "USD", "code": "USD"}},
+            "description": "Перевод организации",
+            "from": "MasterCard 7158300734726758",
+            "to": "Счет 35383033474447895560",
+        }
+    )
+)
