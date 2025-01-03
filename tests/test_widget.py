@@ -5,66 +5,144 @@ from src.widget import get_date, mask_account_card
 
 @pytest.fixture()
 def test_mask_account():
-    return "12345678901234567890"
+    return [
+        {
+            "id": 441945886,
+            "state": "EXECUTED",
+            "date": "2019-08-26T10:50:58.294041",
+            "operationAmount": {"amount": "31957.58", "currency": {"name": "руб.", "code": "RUB"}},
+            "description": "Перевод организации",
+            "from": "Maestro 1596837868705199",
+            "to": "Счет 64686473678894779589",
+        }
+    ]
 
 
 @pytest.fixture()
-def test_mask_card():
-    return "1234567890123456"
+def test_mask_account1():
+    return [
+        {
+            "id": 41428829,
+            "state": "EXECUTED",
+            "date": "2019-07-03T18:35:29.512364",
+            "operationAmount": {"amount": "8221.37", "currency": {"name": "USD", "code": "USD"}},
+            "description": "Перевод организации",
+            "from": "MasterCard 7158300734726758",
+            "to": "Счет 35383033474447895560",
+        }
+    ]
 
 
 def test_mask_bank_account(test_mask_account):
-    assert mask_account_card(test_mask_account) == " **7890"
+    assert mask_account_card(test_mask_account) == [
+        {
+            "id": 441945886,
+            "state": "EXECUTED",
+            "date": "2019-08-26T10:50:58.294041",
+            "operationAmount": {"amount": "31957.58", "currency": {"name": "руб.", "code": "RUB"}},
+            "description": "Перевод организации",
+            "from": "Maestro 1596 83** **** 5199",
+            "to": "Счет **9589",
+        }
+    ]
 
 
-def test_mask_bank_number(test_mask_card):
-    assert mask_account_card(test_mask_card) == " 1234 56** **** 3456"
-
-
-@pytest.mark.parametrize(
-    "name, expected",
-    [
-        ("Visa Platinum 1234 1234 1234 1234", "VisaPlatinum 1234 12** **** 1234"),
-        ("VisaPlatinum1231123112311231", "VisaPlatinum 1231 12** **** 1231"),
-        ("Maestro12311231123112312", "Вы ввели неккоректную информацию"),
-        ("Maestro123112311231123", "Вы ввели неккоректную информацию"),
-        ("Счет 1234 1234 1234 1234 1234", "Счет **1234"),
-        ("Счет12311231123112311231", "Счет **1231"),
-        ("Счет 1234 1234 1234 1234 12345", "Вы ввели неккоректную информацию"),
-        ("Счет 1234 1234 1234 1234 123", "Вы ввели неккоректную информацию"),
-    ],
-)
-def test_mark_mask_account_card(name, expected):
-    assert mask_account_card(name) == expected
-
-    with pytest.raises(TypeError):
-        assert mask_account_card(12345)
-
-    with pytest.raises(TypeError):
-        assert mask_account_card()
+def test_mask_bank_account1(test_mask_account1):
+    assert mask_account_card(test_mask_account1) == [
+        {
+            "id": 41428829,
+            "state": "EXECUTED",
+            "date": "2019-07-03T18:35:29.512364",
+            "operationAmount": {"amount": "8221.37", "currency": {"name": "USD", "code": "USD"}},
+            "description": "Перевод организации",
+            "from": "MasterCard 7158 30** **** 6758",
+            "to": "Счет **5560",
+        }
+    ]
 
 
 @pytest.fixture()
 def test_get_date():
-    return "2024-03-11T02:26:18.671407"
+    return [
+        {
+            "id": 441945886,
+            "state": "EXECUTED",
+            "date": "2019-08-26T10:50:58.294041",
+            "operationAmount": {"amount": "31957.58", "currency": {"name": "руб.", "code": "RUB"}},
+            "description": "Перевод организации",
+            "from": "Maestro 1596837868705199",
+            "to": "Счет 64686473678894779589",
+        }
+    ]
 
 
-def tested_get_dates(test_get_date):
-    assert get_date(test_get_date) == "11.03.2024"
+@pytest.fixture()
+def test_get_date1():
+    return [
+        {
+            "id": 41428829,
+            "state": "EXECUTED",
+            "date": "2019-07-03T18:35:29.512364",
+            "operationAmount": {"amount": "8221.37", "currency": {"name": "USD", "code": "USD"}},
+            "description": "Перевод организации",
+            "from": "MasterCard 7158300734726758",
+            "to": "Счет 35383033474447895560",
+        }
+    ]
 
 
-@pytest.mark.parametrize(
-    "str_data, expected",
-    [
-        ("2024-03-11T02:26:18.671407", "11.03.2024"),
-        ("2012-10-31............wq.w", "31.10.2012"),
-        ("2024-03-11T02:26:18.6714071", "Введите сообщение в корректном формате"),
-        ("2024-03-11T02:26:18.67140", "Введите сообщение в корректном формате"),
-    ],
-)
-def test_mark_data(str_data, expected):
-    assert get_date(str_data) == expected
-    with pytest.raises(TypeError):
-        assert get_date(12345)
-    with pytest.raises(TypeError):
-        assert get_date()
+def test_get_date2(test_get_date):
+    assert get_date(test_get_date) == [
+        {
+            "id": 441945886,
+            "state": "EXECUTED",
+            "date": "26.08.2019",
+            "operationAmount": {"amount": "31957.58", "currency": {"name": "руб.", "code": "RUB"}},
+            "description": "Перевод организации",
+            "from": "Maestro 1596837868705199",
+            "to": "Счет 64686473678894779589",
+        }
+    ]
+
+
+def test_get_date3(test_get_date1):
+    assert get_date(test_get_date1) == [
+        {
+            "id": 41428829,
+            "state": "EXECUTED",
+            "date": "03.07.2019",
+            "operationAmount": {"amount": "8221.37", "currency": {"name": "USD", "code": "USD"}},
+            "description": "Перевод организации",
+            "from": "MasterCard 7158300734726758",
+            "to": "Счет 35383033474447895560",
+        }
+    ]
+
+
+@pytest.fixture()
+def test_date_and_mask():
+    return [
+        {
+            "id": 939719570,
+            "state": "EXECUTED",
+            "date": "2018-06-30T02:08:58.425572",
+            "operationAmount": {"amount": "9824.07", "currency": {"name": "USD", "code": "USD"}},
+            "description": "Перевод организации",
+            "from": "Счет 75106830613657916952",
+            "to": "Счет 11776614605963066702",
+        }
+    ]
+
+
+def test_date_and_mask1(test_date_and_mask):
+    assert mask_account_card(get_date(test_date_and_mask)) == [
+        {
+            "id": 939719570,
+            "state": "EXECUTED",
+            "date": "30.06.2018",
+            "operationAmount": {"amount": "9824.07", "currency": {"name": "USD", "code": "USD"}},
+            "description": "Перевод организации",
+            "from": "Счет **6952",
+            "to": "Счет **6702",
+        }
+    ]

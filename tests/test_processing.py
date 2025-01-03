@@ -48,7 +48,7 @@ def test_filter_canceled(test_filter_state, canceled_state):
         ([{"id": 41428829, "state": "EXECUTED", "date": "2019-07-03T18:35:29.512364"}], "CANCELED", []),
         (
             [{"id": 41428829, "state": "EXECUTED", "date": "2019-07-03T18:35:29.512364"}],
-            "ExEcUtEd",
+            "EXECUTED",
             [{"id": 41428829, "state": "EXECUTED", "date": "2019-07-03T18:35:29.512364"}],
         ),
         (
@@ -59,7 +59,7 @@ def test_filter_canceled(test_filter_state, canceled_state):
         ([{"id": 594226727, "state": "CANCELED", "date": "2018-09-12T21:27:25.241689"}], "EXECUTED", []),
         (
             [{"id": 594226727, "state": "CANCELED", "date": "2018-09-12T21:27:25.241689"}],
-            "CaNcElEd",
+            "CANCELED",
             [{"id": 594226727, "state": "CANCELED", "date": "2018-09-12T21:27:25.241689"}],
         ),
     ],

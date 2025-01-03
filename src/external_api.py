@@ -35,18 +35,3 @@ def get_transaction_amount(transaction: dict) -> Any:
         return f"{float(transaction['operationAmount']['amount'])} RUB"
     else:
         return []
-
-
-print(
-    get_transaction_amount(
-        {
-            "id": 41428829,
-            "state": "EXECUTED",
-            "date": "2019-07-03T18:35:29.512364",
-            "operationAmount": {"amount": "8221.37", "currency": {"name": "USD", "code": "EUR"}},
-            "description": "Перевод организации",
-            "from": "MasterCard 7158300734726758",
-            "to": "Счет 35383033474447895560",
-        }
-    )
-)

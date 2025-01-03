@@ -35,6 +35,3 @@ def log(filename: Optional[str] = None) -> Callable:
 def my_function(x: Any, y: Any) -> Any:
     """Функция исполняемая декоратором "log" """
     return x + y
-
-
-print(my_function(1, 0))
