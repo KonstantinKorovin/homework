@@ -1,11 +1,10 @@
+import os
 import re
 import time
 
 from src.generators import filter_by_currency
 from src.processing import filter_by_state, sort_by_date
 from src.transactions_read import (
-    csv_df,
-    excel_df,
     reading_csv_transactions,
     reading_excel_transactions,
     reading_transactions_in_str,
@@ -14,9 +13,9 @@ from src.transactions_read import (
 from src.utils import load_transactions
 from src.widget import get_date, mask_account_card
 
-PATH_TO_JSON = "/Users/krynik/PycharmProjects/bank_vidget/data/operations.json"
-PATH_TO_CSV = csv_df  # "/Users/krynik/PycharmProjects/bank_vidget/data/transactions.csv"
-PATH_TO_XLSX = excel_df  # "/Users/krynik/PycharmProjects/bank_vidget/data/transactions_excel.xlsx"
+PATH_TO_JSON = os.path.abspath("../data/operations.json")
+PATH_TO_CSV = os.path.abspath("../data/transactions.csv")
+PATH_TO_XLSX = os.path.abspath("../data/transactions_excel.xlsx")
 
 
 def main() -> str:

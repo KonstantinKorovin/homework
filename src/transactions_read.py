@@ -17,7 +17,7 @@ def reading_csv_transactions(filename_csv: str) -> list[dict]:
 excel_df = pd.read_excel("/Users/krynik/PycharmProjects/bank_vidget/data/transactions_excel.xlsx")
 
 
-def reading_excel_transactions(filename_excel: pd.DataFrame) -> list[dict]:
+def reading_excel_transactions(filename_excel: str) -> list[dict]:
     """Функция для считывания финансовых операций из Excel выдает список словарей с транзакциями"""
     excel_df_dict = excel_df.to_dict("records")
     return excel_df_dict
