@@ -13,9 +13,20 @@ from src.transactions_read import (
 from src.utils import load_transactions
 from src.widget import get_date, mask_account_card
 
-PATH_TO_JSON = os.path.abspath("../data/operations.json")
-PATH_TO_CSV = os.path.abspath("../data/transactions.csv")
-PATH_TO_XLSX = os.path.abspath("../data/transactions_excel.xlsx")
+
+# Получаем путь к текущему файлу (main.py)
+current_file = os.path.abspath(__file__)
+
+# Получаем путь к папке src
+src_dir = os.path.dirname(current_file)
+
+# Получаем путь к папке data (находится на одном уровне с src)
+data_dir = os.path.join(os.path.dirname(src_dir), "data")
+
+# Получаем пути к файлам
+PATH_TO_JSON = os.path.join(data_dir, "operations.json")
+PATH_TO_CSV = os.path.join(data_dir, "transactions.csv")
+PATH_TO_XLSX = os.path.join(data_dir, "transactions_excel.xlsx")
 
 
 def main() -> str:
@@ -76,18 +87,18 @@ def main() -> str:
         while True:
             print("Отсортировать операции по дате? Да/Нет")
             sorted_list_input = input()
-            if re.findall("Нет", sorted_list_input, flags=re.I):
+            if re.fullmatch("Нет", sorted_list_input, flags=re.I):
                 return filtered_list
-            elif re.findall("Да", sorted_list_input, flags=re.I):
+            elif re.fullmatch("Да", sorted_list_input, flags=re.I):
                 break
             else:
                 print("Введите 'Да' или 'Нет'!")
         while True:
             print("Отсортировать по возрастанию или по убыванию?")
             from_sorted_list_input = str(input())
-            if re.findall("по возрастанию", from_sorted_list_input, flags=re.I):
+            if re.fullmatch("по возрастанию", from_sorted_list_input, flags=re.I):
                 return sort_by_date(filtered_list, False)
-            elif re.findall("по убыванию", from_sorted_list_input, flags=re.I):
+            elif re.fullmatch("по убыванию", from_sorted_list_input, flags=re.I):
                 return sort_by_date(filtered_list, True)
             else:
                 print("Введите 'по возрастанию' или 'по убыванию'!")
@@ -97,11 +108,11 @@ def main() -> str:
         while True:
             print("Выводить только рублевые тразакции? Да/Нет")
             filter_rub_input = input()
-            if re.findall("Нет", filter_rub_input, flags=re.I):
+            if re.fullmatch("Нет", filter_rub_input, flags=re.I):
                 return sorted_list
-            elif re.findall("Да", filter_rub_input, flags=re.I) and (file_counter == 2 or file_counter == 3):
+            elif re.fullmatch("Да", filter_rub_input, flags=re.I) and (file_counter == 2 or file_counter == 3):
                 return list(filter_by_currency(sorted_list, "RUB", True))
-            elif re.findall("Да", filter_rub_input, flags=re.I) and file_counter == 1:
+            elif re.fullmatch("Да", filter_rub_input, flags=re.I) and file_counter == 1:
                 return list(filter_by_currency(sorted_list, "RUB"))
             else:
                 print("Введите 'Да' или 'Нет'!")
@@ -111,12 +122,12 @@ def main() -> str:
         while True:
             print("""Отфильтровать список транзакций по определенному слову в описании? Да/Нет""")
             words_filtered_input = input()
-            if re.findall("Нет", words_filtered_input, flags=re.I):
+            if re.fullmatch("Нет", words_filtered_input, flags=re.I):
                 print("Распечатываю итоговый список транзакций...")
                 time.sleep(3)
                 print(f"Всего банковских операций в выборке: {len(transaction_sorted_value)}")
                 return transaction_sorted_value
-            elif re.findall("Да", words_filtered_input, flags=re.I):
+            elif re.fullmatch("Да", words_filtered_input, flags=re.I):
                 break
             else:
                 print("Введите 'Да' или 'Нет'!")
