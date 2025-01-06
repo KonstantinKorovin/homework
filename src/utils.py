@@ -15,7 +15,7 @@ def load_transactions(file_path: str) -> list:
     utils_loger.info("Starting app..")
     try:
         utils_loger.info("Initialization..")
-        with open(file_path, "r") as f:
+        with open(file_path, "r", encoding="utf-8") as f:
             utils_loger.info("Loading..")
             date = json.load(f)
             if not isinstance(date, list):

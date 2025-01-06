@@ -13,7 +13,6 @@ from src.transactions_read import (
 from src.utils import load_transactions
 from src.widget import get_date, mask_account_card
 
-
 # Получаем путь к текущему файлу (main.py)
 current_file = os.path.abspath(__file__)
 

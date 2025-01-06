@@ -18,11 +18,8 @@ def filter_by_currency(
 
 def transaction_descriptions(transactions: Iterable[dict]) -> Generator[str]:
     """Функция последовательно выдает операции"""
-    if not transactions:
-        yield "Список отсутствует"
-    else:
-        for transaction in transactions:
-            yield transaction["description"]
+    for transaction in transactions:
+        yield transaction.get("description", "Список отсутствует")
 
 
 def card_number_generator(start: int | str, stop: int | str) -> Generator[str, None, None]:
