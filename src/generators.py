@@ -1,4 +1,4 @@
-from typing import Generator, Iterable, Union
+from typing import Generator, Iterable, Union, Iterator
 
 
 def filter_by_currency(
@@ -16,7 +16,7 @@ def filter_by_currency(
             yield transaction
 
 
-def transaction_descriptions(transactions: Iterable[dict]) -> Generator[str]:
+def transaction_descriptions(transactions: Iterable[dict]) -> Iterator[str]:
     """Функция последовательно выдает операции"""
     for transaction in transactions:
         yield transaction.get("description", "Список отсутствует")

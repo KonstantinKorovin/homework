@@ -18,13 +18,13 @@ def reading_excel_transactions(filename_excel: str) -> list[dict]:
     return excel_df_dict
 
 
-def reading_transactions_in_str(file_transactions_: list, string_search: str) -> list:
+def reading_transactions_in_str(file_transactions: list, string_search: str) -> list:
     """Функция для поиска банковских операций в списке по заданной строке"""
-    string = string_search.replace(" ", "")
+    pattern = re.compile(string_search)
     new_transactions_list = [
-        trns
-        for trns in file_transactions_
-        if re.fullmatch(string, str(trns.get("description", "Неизвестная операция")).replace(" ", ""), flags=re.I)
+        transaction
+        for transaction in file_transactions
+        if "description" in transaction and pattern.search(transaction["description"])
     ]
 
     return new_transactions_list

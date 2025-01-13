@@ -127,8 +127,7 @@ def main() -> list | str:
     if not file_data:
         return "Введите значение от 1 до 3!"
     else:
-        status = True
-        while status:
+        while True:
             print(
                 """Введите статус, по которому необходимо выполнить фильтрацию.
 Доступные для фильтровки статусы: EXECUTED, CANCELED, PENDING"""
@@ -139,7 +138,7 @@ def main() -> list | str:
                 print(f"Статус операции {status_name} недоступен или не существует в списке!")
             else:
                 print("Отсортировать операции по дате? Да/Нет")
-                status = False
+                break
 
     sorted_ascending = input()
     sorted_data = sorted_file_input(status_data, sorted_ascending)
